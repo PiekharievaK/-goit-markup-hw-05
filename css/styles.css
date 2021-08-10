@@ -9,6 +9,10 @@
   --background-color: #ffffff;
   --border-color: #eeeeee;
   --clients-icon-color: #afb1b8;
+  --exemples-overflow-collor: rgba(33, 150, 243, 0.8);
+  --backdrop: rgba(0, 0, 0, 0.2);
+  --duration: 250ms;
+  --cubic: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 body {
@@ -90,9 +94,24 @@ header {
   padding: 8px 0px;
   text-decoration: none;
   color: var(--title-color);
+
+  transition-property: color;
+  transition-duration: var(--duration);
+  transition-timing-function: var(--cubic);
 }
 .current-link {
+  position: relative;
   color: var(--accent-color);
+}
+.current-link::after {
+  position: absolute;
+  bottom: -24px;
+  display: block;
+  height: 4px;
+  width: 100%;
+  content: "";
+  border-radius: 2px;
+  background-color: var(--accent-color);
 }
 .nav-link:hover,
 .nav-link:focus {
@@ -113,6 +132,10 @@ header {
   height: 16px;
   color: var(--main-text-color);
   text-decoration: none;
+
+  transition-property: color;
+  transition-duration: var(--duration);
+  transition-timing-function: var(--cubic);
 }
 .contacts-list svg {
   margin-right: 10px;
@@ -180,6 +203,10 @@ header {
   min-width: 200px;
   color: var(--accent-text-color);
   background-color: var(--accent-color);
+
+  transition-property: background-color;
+  transition-duration: var(--duration);
+  transition-timing-function: var(--cubic);
 }
 .hero-button:hover,
 .hero-button:focus {
@@ -241,6 +268,10 @@ header {
   height: 44px;
   border-radius: 50%;
   fill: var(--clients-icon-color);
+
+  transition-property: background-color, fill;
+  transition-duration: var(--duration);
+  transition-timing-function: var(--cubic);
 }
 
 .link-item:not(:last-child) {
@@ -332,6 +363,10 @@ header {
   color: var(--clients-icon-color);
   fill: currentColor;
   background-color: var(--background-color);
+
+  transition-property: fill, border;
+  transition-duration: var(--duration);
+  transition-timing-function: var(--cubic);
 }
 
 .company-icon:hover,
@@ -359,6 +394,10 @@ header {
   border: 1px solid transparent;
   color: var(--title-color);
   background-color: var(--accent-backgraund);
+
+  transition-property: background-color, color;
+  transition-duration: var(--duration);
+  transition-timing-function: var(--cubic);
 }
 .filter .item:not(:last-child) {
   margin-right: 8px;
@@ -392,6 +431,9 @@ header {
 }
 .work-exemples-link {
   display: block;
+  transition-property: box-shadow;
+  transition-duration: var(--duration);
+  transition-timing-function: var(--cubic);
 
   text-decoration: none;
   color: inherit;
@@ -399,6 +441,29 @@ header {
 .work-exemples-text {
   font-size: 16px;
   line-height: 1.87;
+}
+
+.exemples-thumb {
+  position: relative;
+  overflow: hidden;
+}
+.exemples-overflow {
+  position: absolute;
+  top: 100%;
+  left: 0%;
+  padding: 63px 24px;
+  height: 100%;
+  width: 100%;
+  color: var(--accent-text-color);
+  background-color: var(--exemples-overflow-collor);
+
+  font-size: 18px;
+  line-height: 1.56;
+  letter-spacing: 0.03em;
+
+  transition-property: transform;
+  transition-duration: var(--duration);
+  transition-timing-function: var(--cubic);
 }
 
 .work-exemples-list .item {
@@ -411,12 +476,29 @@ header {
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
     1px 4px 6px rgba(0, 0, 0, 0.16);
 }
+.work-exemples-link:hover .exemples-overflow,
+.work-exemples-link:focus .exemples-overflow {
+  transform: translateY(-100%);
+}
 
 .work-exemples-list .item:nth-child(3n) {
   margin-right: 0px;
 }
 .work-exemples-list .item:nth-last-child(-n + 3) {
   margin-bottom: 0px;
+}
+
+.exemples-description {
+  position: absolute;
+  bottom: 0%;
+  background-color: rgba(47, 48, 58, 0.8);
+  width: 100%;
+  text-transform: uppercase;
+  font-weight: 700;
+  line-height: 1.14;
+  text-align: center;
+  padding: 27px 0px;
+  color: var(--accent-text-color);
 }
 
 .card-description {
@@ -504,9 +586,75 @@ address {
   background-color: rgba(255, 255, 255, 0.1);
 
   fill: currentColor;
+
+  transition-property: background-color;
+  transition-duration: var(--duration);
+  transition-timing-function: var(--cubic);
 }
 
 .soc-link:hover,
 .soc-link:focus {
   background-color: var(--accent-color);
+}
+
+/* Модальное окно */
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--backdrop);
+  opacity: 1;
+
+  transition-property: opacity, visibility;
+  transition-duration: var(--duration);
+  transition-timing-function: var(--cubic);
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  width: 528px;
+  height: 581px;
+
+  border-radius: 4px;
+  background-color: var(--background-color);
+
+  transition-property: transform;
+  transition-duration: var(--duration);
+  transition-timing-function: var(--cubic);
+}
+.backdrop.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+.backdrop.is-hidden .modal {
+  transform: translate(-50%, -50%) scale(0.1);
+}
+.modal svg {
+  fill: currentColor;
+}
+.modal-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: var(--background-color);
+  border: 1px solid var(--border-color);
+  cursor: pointer;
+
+  transition-property: color;
+  transition-duration: var(--duration);
+  transition-timing-function: var(--cubic);
+}
+
+.modal-close:focus,
+.modal-close:hover {
+  color: var(--accent-color);
 }

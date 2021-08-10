@@ -50,7 +50,7 @@
 		<section class="hero-section">
 			<div class="container">
 				<h1 class="hero-title">Эффективные решения <br> для вашего бизнеса</h1>
-				<button name="button" class="hero-button">Заказать услугу</button>
+				<button name="button" class="hero-button" data-modal-open>Заказать услугу</button>
 			</div>
 		</section>
 
@@ -59,7 +59,7 @@
 		<section class="section">
 			<div class="container">
 				<h2 class="visually-hidden"> Наши преимущества</h2>
-				<!--для ассистивных технологий, потом скрыть в CSS -->
+	
 				<ul class="features-list">
 					<li class="item">
 						<div class="features-icon"><svg width="70px" height="70px">
@@ -108,16 +108,22 @@
 				<h2 class="section-title">Чем мы занимаемся</h2>
 				<ul class="work-section-list">
 					<li class="item">
-						<img src="./images/box1.webp" alt="руки на клавиатуре перед монитором" width=370 height=294>
-					</li>
+						<div class="exemples-thumb"> <img src="./images/box1.webp" alt="руки на клавиатуре перед монитором" width=370 height=294>
+					<p class="exemples-description">Десктопные приложения </p>
+						</div>
+				</li>
 					<li class="item">
-						<img src="./images/box2.webp" alt="женские руки держат телефон перед ноутбуком" width=370
+						<div class="exemples-thumb"> <img src="./images/box2.webp" alt="женские руки держат телефон перед ноутбуком" width=370
 							height=294>
-					</li>
+					<p class="exemples-description">Мобильные приложения </p>
+						</div>
+				</li>
 					<li class="item">
-						<img src="./images/box3.webp" alt="руки держат планшет с цветовой палитрой и стилус" width=370
+						<div class="exemples-thumb"> <img src="./images/box3.webp" alt="руки держат планшет с цветовой палитрой и стилус" width=370
 							height=294>
-					</li>
+					<p class="exemples-description">Дизайнерские решения </p>
+						</div>
+				</li>
 				</ul>
 			</div>
 
@@ -282,12 +288,22 @@
 						<use href="./images/symbol.svg#icon-linkedin"></use>
 					</svg></a></li>
 				</ul>
-
 			</div>
 		</div>
 
 	</footer>
 
+	<!-- Модальное окно -->
+
+			<div class="backdrop is-hidden" data-modal>
+				<div class="modal">
+<button class="modal-close" data-modal-close> <svg width="11px" height="11px">
+	<use href="./images/symbol.svg#icon-close"></use>
+</svg></button>
+				</div>
+			</div>
+
+<script src="./js/modal.js"></script>
 </body>
 
 </html>
